@@ -38,22 +38,25 @@
     }
   }
 
+  // Check for consent status on initial load
   window.addEventListener('CookiebotOnConsentReady', function () {
-    if (Cookiebot.consent && Cookiebot.consent.marketing === true) {
+    if (Cookiebot && Cookiebot.consent && Cookiebot.consent.marketing === true) {
       recordConsentInKlaviyo('granted');
     } else {
       recordConsentInKlaviyo('denied');
     }
   });
 
+  // Also update if user changes their consent settings later
   window.addEventListener('CookiebotOnConsentUpdate', function () {
-    if (Cookiebot.consent && Cookiebot.consent.marketing === true) {
+    if (Cookiebot && Cookiebot.consent && Cookiebot.consent.marketing === true) {
       recordConsentInKlaviyo('granted');
     } else {
       recordConsentInKlaviyo('denied');
     }
   });
 </script>
+
 
     <!-- TEST KLAVIYO -->
 
