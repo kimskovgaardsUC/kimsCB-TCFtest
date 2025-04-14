@@ -26,40 +26,6 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-TB6B82X2');</script>
     <!-- End Google Tag Manager -->
-
-    <!-- Klaviyo begin -->
-<script>
-  function recordConsentInKlaviyo(status = "denied") {
-    if (typeof klaviyo !== "undefined" && klaviyo.isIdentified()) {
-      klaviyo.push(['identify', {
-        'ad_personalization': status,
-        'ad_user_data': status,
-      }]);
-    }
-  }
-
-  // Check for consent status on initial load
-  window.addEventListener('CookiebotOnConsentReady', function () {
-    if (Cookiebot && Cookiebot.consent && Cookiebot.consent.marketing === true) {
-      recordConsentInKlaviyo('granted');
-    } else {
-      recordConsentInKlaviyo('denied');
-    }
-  });
-
-  // Also update if user changes their consent settings later
-  window.addEventListener('CookiebotOnConsentUpdate', function () {
-    if (Cookiebot && Cookiebot.consent && Cookiebot.consent.marketing === true) {
-      recordConsentInKlaviyo('granted');
-    } else {
-      recordConsentInKlaviyo('denied');
-    }
-  });
-</script>
-
-
-    <!-- TEST KLAVIYO -->
-
     
 </head>
 <body>
