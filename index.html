@@ -38,19 +38,21 @@
     }
   }
 
-  function handleCookiebotConsent() {
-    if (typeof Cookiebot !== "undefined" && Cookiebot.consents && Cookiebot.consents.marketing === true) {
-      console.log('Marketing consent granted');
+  window.addEventListener('CookiebotOnConsentReady', function () {
+    if (Cookiebot.consents && Cookiebot.consents.marketing === true) {
       recordConsentInKlaviyo('granted');
     } else {
-      console.log('Marketing consent denied');
       recordConsentInKlaviyo('denied');
     }
-  }
+  });
 
-  // These events ensure the script waits for Cookiebot to be ready or updated
-  window.addEventListener('CookiebotOnConsentReady', handleCookiebotConsent);
-  window.addEventListener('CookiebotOnConsentUpdate', handleCookiebotConsent);
+  window.addEventListener('CookiebotOnConsentUpdate', function () {
+    if (Cookiebot.consents && Cookiebot.consents.marketing === true) {
+      recordConsentInKlaviyo('granted');
+    } else {
+      recordConsentInKlaviyo('denied');
+    }
+  });
 </script>
 
     <!-- TEST KLAVIYO -->
