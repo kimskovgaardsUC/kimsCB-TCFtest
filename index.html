@@ -39,7 +39,7 @@
   }
 
   window.addEventListener('CookiebotOnConsentReady', function () {
-    if (Cookiebot.consents && Cookiebot.consents.marketing === true) {
+    if (Cookiebot.consent && Cookiebot.consent.marketing === true) {
       recordConsentInKlaviyo('granted');
     } else {
       recordConsentInKlaviyo('denied');
@@ -47,7 +47,7 @@
   });
 
   window.addEventListener('CookiebotOnConsentUpdate', function () {
-    if (Cookiebot.consents && Cookiebot.consents.marketing === true) {
+    if (Cookiebot.consent && Cookiebot.consent.marketing === true) {
       recordConsentInKlaviyo('granted');
     } else {
       recordConsentInKlaviyo('denied');
