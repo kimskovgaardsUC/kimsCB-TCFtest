@@ -27,7 +27,7 @@
         })(window, document, 'script', 'dataLayer', 'GTM-TB6B82X2');</script>
     <!-- End Google Tag Manager -->
 
-    <-- TEST KLAVIYO -->
+    <!-- Klaviyo begin -->
 <script>
   function recordConsentInKlaviyo(status = "denied") {
     if (typeof klaviyo !== "undefined" && klaviyo.isIdentified()) {
@@ -39,7 +39,7 @@
   }
 
   function handleCookiebotConsent() {
-    if (Cookiebot && Cookiebot.consents && Cookiebot.consents.marketing === true) {
+    if (typeof Cookiebot !== "undefined" && Cookiebot.consents && Cookiebot.consents.marketing === true) {
       console.log('Marketing consent granted');
       recordConsentInKlaviyo('granted');
     } else {
@@ -48,10 +48,11 @@
     }
   }
 
-  // Wait for Cookiebot to be ready and run the handler
+  // These events ensure the script waits for Cookiebot to be ready or updated
   window.addEventListener('CookiebotOnConsentReady', handleCookiebotConsent);
-  window.addEventListener('CookiebotOnConsentUpdate', handleCookiebotConsent); // Optional: runs again if user updates consent
+  window.addEventListener('CookiebotOnConsentUpdate', handleCookiebotConsent);
 </script>
+
     <!-- TEST KLAVIYO -->
 
     
