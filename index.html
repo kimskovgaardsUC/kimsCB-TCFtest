@@ -35,5 +35,34 @@
     <!-- End Google Tag Manager (noscript) -->
     <h1>Usercentrics CMP V2 Test Page - Cookiebot</h1>
     <img src="https://usercentrics.com/wp-content/uploads/2020/04/190208-UCS-Logo-800px.png" alt="uc-logo">
+
+    script>
+  function recordConsentInKlaviyo(status = "denied") {
+    if (typeof klaviyo !== "undefined" && klaviyo.isIdentified()) {
+      klaviyo.push(['identify', {
+        'ad_personalization': status,
+        'ad_user_data': status,
+      }]);
+    }
+  }
+
+  function handleCookiebotConsent() {
+    console.log("Cookiebot consent checked:", Cookiebot.consent.marketing);
+
+    if (Cookiebot.consent.marketing) {
+      console.log('ad_user_data and ad_personalization consent granted');
+      recordConsentInKlaviyo('granted');
+    } else {
+      console.log('ad_user_data and ad_personalization consent denied');
+      recordConsentInKlaviyo('denied');
+    }
+  }
+
+  // Initial consent state
+  window.addEventListener('CookiebotOnConsentReady', handleCookiebotConsent);
+
+  // On consent update
+  window.addEventListener('CookiebotOnConsentUpdate', handleCookiebotConsent);
+</script>
 </body>
 </html>
